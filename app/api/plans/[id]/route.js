@@ -14,7 +14,7 @@ export async function PATCH(req, { params }) {
     const rows = await sql`
       UPDATE plans SET name = ${name}, duration_days = ${durationDays}, price_cents = ${priceCents}, active = ${active}
       WHERE id = ${id}
-      RETURNING id, name, duration_days, price_cents, active, created_at
+      RETURNING id, key, name, duration_days, price_cents, active, created_at
     `;
     if (!rows.length) return NextResponse.json({ ok: false, error: "Plano não encontrado" }, { status: 404 });
     return NextResponse.json({ ok: true, plan: rows[0] });
