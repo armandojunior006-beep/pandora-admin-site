@@ -23,14 +23,15 @@ CREATE TABLE IF NOT EXISTS plans (
 );
 
 CREATE TABLE IF NOT EXISTS users (
-  id         SERIAL PRIMARY KEY,
-  name       TEXT NOT NULL,
-  login      TEXT UNIQUE NOT NULL,     -- login que o cliente usa no bot
-  contact    TEXT,                     -- whatsapp/e-mail, opcional
-  notes      TEXT,
-  status     TEXT NOT NULL DEFAULT 'ativo',  -- ativo | bloqueado
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+  id            SERIAL PRIMARY KEY,
+  name          TEXT NOT NULL,
+  login         TEXT UNIQUE NOT NULL,     -- login que o cliente usa no bot
+  password_hash TEXT,                     -- senha (bcrypt) que o cliente usa para logar NO BOT
+  contact       TEXT,                     -- whatsapp/e-mail, opcional
+  notes         TEXT,
+  status        TEXT NOT NULL DEFAULT 'ativo',  -- ativo | bloqueado
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS licenses (

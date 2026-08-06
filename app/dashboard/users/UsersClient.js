@@ -13,18 +13,18 @@ export default function UsersClient({ initialUsers }) {
   const router = useRouter();
   const [users, setUsers] = useState(initialUsers);
   const [modal, setModal] = useState(null); // null | "create" | user object (edit)
-  const [form, setForm] = useState({ name: "", login: "", contact: "", notes: "", status: "ativo" });
+  const [form, setForm] = useState({ name: "", login: "", password: "", contact: "", notes: "", status: "ativo" });
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
 
   function openCreate() {
-    setForm({ name: "", login: "", contact: "", notes: "", status: "ativo" });
+    setForm({ name: "", login: "", password: "", contact: "", notes: "", status: "ativo" });
     setError("");
     setModal("create");
   }
 
   function openEdit(user) {
-    setForm({ name: user.name, login: user.login, contact: user.contact || "", notes: user.notes || "", status: user.status });
+    setForm({ name: user.name, login: user.login, password: "", contact: user.contact || "", notes: user.notes || "", status: user.status });
     setError("");
     setModal(user);
   }
@@ -87,6 +87,7 @@ export default function UsersClient({ initialUsers }) {
               <tr>
                 <th>Nome</th>
                 <th>Login</th>
+                <th>Senha (bot)</th>
                 <th>Contato</th>
                 <th>Status</th>
                 <th>Criado em</th>
@@ -98,6 +99,7 @@ export default function UsersClient({ initialUsers }) {
                 <tr key={u.id}>
                   <td>{u.name}</td>
                   <td className="mono">{u.login}</td>
+                  <td>{u.has_password ? <span className="badge badge-ativo">definida</span> : <span className="badge badge-bloqueado">sem senha</span>}</td>
                   <td>{u.contact || "-"}</td>
                   <td><span className={`badge badge-${u.status}`}>{u.status}</span></td>
                   <td>{formatDate(u.created_at)}</td>
@@ -128,6 +130,16 @@ export default function UsersClient({ initialUsers }) {
                 disabled={modal !== "create"}
                 value={form.login}
                 onChange={(e) => setForm({ ...form, login: e.target.value })}
+              />
+            </div>
+            <div className="field">
+              <label>{modal === "create" ? "Senha (usada no login do bot)" : "Nova senha (deixe vazio para não alterar)"}</label>
+              <input
+                type="password"
+                className="input"
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
+                placeholder={modal === "create" ? "mínimo 6 caracteres" : "•••••• (sem alteração)"}
               />
             </div>
             <div className="field">
