@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 import { sql, ensureSchema } from "../../../../../lib/db.js";
 import { hashPassword } from "../../../../../lib/auth.js";
 import { withCors, CORS_HEADERS } from "../../../../../lib/cors.js";
+import { checkRateLimit, getClientIp } from "../../../../../lib/rateLimit.js";
 
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
@@ -14,6 +15,10 @@ export async function OPTIONS() {
 export async function POST(req) {
   try {
     await ensureSchema();
+    // Segurança 2026-08-18: rate limit — limite mais apertado (5/min) pra
+    // dificultar criação de contas em massa por script.
+    const rl = await checkRateLimit(`register:${getClientIp(req)}`, { max: 5, windowMs: 60_000 });
+    if (!rl.allowed) return withCors(NextResponse.json({ ok: false, error: "Muitas tentativas — aguarde um instante" }, { status: 429 }));
     const body = await req.json().catch(() => ({}));
     const login = String(body.login || "").trim().toLowerCase();
     const password = String(body.password || "");

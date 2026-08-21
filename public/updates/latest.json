@@ -1,0 +1,8 @@
+{
+  "version": "1.5.72+20260821-98rd",
+  "buildId": "20260821-98rd",
+  "type": "main",
+  "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
+  "sha256": "748cdefa395a299b2cade1f5e64c78f493b2557cde845abfb18b69f28dd8d840",
+  "notes": "Corrige proxy travando com ERR_TUNNEL_CONNECTION_FAILED no Chrome real (fallback de protocolo agora funciona)"
+}

@@ -8,6 +8,7 @@
 import { NextResponse } from "next/server";
 import { sql, ensureSchema } from "../../../../../lib/db.js";
 import { withCors, CORS_HEADERS } from "../../../../../lib/cors.js";
+import { checkRateLimit, getClientIp } from "../../../../../lib/rateLimit.js";
 
 export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: CORS_HEADERS });
@@ -16,6 +17,11 @@ export async function OPTIONS() {
 export async function POST(req) {
   try {
     await ensureSchema();
+    // Segurança 2026-08-18: rate limit — limite alto (30/min) porque é
+    // heartbeat normal do app a cada poucos minutos; ainda barra scan de
+    // tokens em força bruta.
+    const rl = await checkRateLimit(`validate:${getClientIp(req)}`, { max: 30, windowMs: 60_000 });
+    if (!rl.allowed) return withCors(NextResponse.json({ ok: false, error: "Muitas tentativas — aguarde um instante" }, { status: 429 }));
     const body = await req.json().catch(() => ({}));
     const token = String(body.token || "").trim();
     const deviceHash = String(body.device_hash || "").trim();

@@ -1,0 +1,30 @@
+/* ============================================================================
+   Tailwind v4 — usado só pela landing page pública ("/"). O /dashboard e
+   /login continuam em globals.css (CSS puro) sem depender disso; import
+   fica no layout.js DEPOIS de globals.css só pra utilities poderem
+   sobrescrever quando precisar, mas na prática não colidem (classes
+   Tailwind vs. classes semânticas .btn/.card do dashboard).
+   ============================================================================ */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: var(--font-jbmono), ui-monospace, Menlo, Consolas, monospace;
+
+  /* Paleta minimalista — quase puro preto, verde esmeralda usado como
+     ACENTO fino (linhas, pontos, texto), não como preenchimento grande de
+     cards/gradiente (pedido do usuário 2026-08-09: "menos cards/gradiente,
+     mais tipografia, visual mais clean e cinematográfico"). */
+  --color-abyss: #030404;
+  --color-void: #08090a;
+  --color-panel: #0c0d0f;
+  --color-panel-2: #101214;
+  --color-border: #1c1e21;
+  /* Verde igual ao do app de verdade (pedido do usuário 2026-08-09: "coloque
+     verde igual ao do app, pois o do site não é verde") — valores tirados
+     literalmente de novo-pandora-bot/tailwind.config.js: accent2 (=success,
+     cor do botão Play/confirmações) e accentSoft (fundo suave dos badges). */
+  --color-emerald-glow: #39c766;
+  --color-emerald: #2ea24c;
+  --color-emerald-dim: #0d3d1c;
+}

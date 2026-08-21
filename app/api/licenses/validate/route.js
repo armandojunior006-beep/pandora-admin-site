@@ -18,10 +18,16 @@
 // ============================================================================
 import { NextResponse } from "next/server";
 import { sql, ensureSchema } from "../../../../lib/db.js";
+import { checkRateLimit, getClientIp } from "../../../../lib/rateLimit.js";
 
 export async function POST(req) {
   try {
     await ensureSchema();
+    // Segurança 2026-08-18: rate limit — limite mais alto que login (60/min)
+    // porque o bot também usa essa rota pra checar a licença periodicamente,
+    // não só pra "login"; ainda barra tentativa de força bruta em token.
+    const rl = await checkRateLimit(`license-validate:${getClientIp(req)}`, { max: 60, windowMs: 60_000 });
+    if (!rl.allowed) return NextResponse.json({ ok: false, error: "Muitas tentativas — aguarde um instante" }, { status: 429 });
     const body = await req.json().catch(() => ({}));
     const token = String(body.token || "").trim();
     const deviceHwid = String(body.deviceHwid || "").trim();

@@ -8,10 +8,15 @@
 import { NextResponse } from "next/server";
 import { sql, ensureSchema } from "../../../../lib/db.js";
 import { comparePassword } from "../../../../lib/auth.js";
+import { checkRateLimit, getClientIp } from "../../../../lib/rateLimit.js";
 
 export async function POST(req) {
   try {
     await ensureSchema();
+    // Segurança 2026-08-18: rate limit — sem isso dava pra tentar login por
+    // força bruta sem limite nenhum.
+    const rl = await checkRateLimit(`bot-login:${getClientIp(req)}`, { max: 10, windowMs: 60_000 });
+    if (!rl.allowed) return NextResponse.json({ ok: false, error: "Muitas tentativas — aguarde um instante" }, { status: 429 });
     const body = await req.json().catch(() => ({}));
     const login = String(body.login || "").trim();
     const password = String(body.password || "");

@@ -23,8 +23,18 @@ html, body {
   font-size: 14px;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* BUG real 2026-08-09 (reportado pelo usuário: botão "ver planos" com texto
+   invisível — verde em cima de verde) — um "a { color }" solto (sem classe)
+   aqui colidia com QUALQUER classe de cor do Tailwind aplicada direto num
+   <a> da landing page: por causa de como o Tailwind v4 organiza @layer, CSS
+   "fora de camada" (como esse arquivo inteiro) sempre ganha de CSS "em
+   camada" (as utilities), não importa a especificidade — mesmo um seletor
+   de TAG feio como "a" vencia uma CLASSE tipo .text-abyss. Trocado por uma
+   classe explícita (.acc-link, só usada nos ~7 links do dashboard que
+   dependiam disso — layout.js/page.js) — assim NENHUM <a> "pelado" da
+   landing page é afetado, sem precisar de hack de especificidade/scoping. */
+.acc-link { color: var(--accent); text-decoration: none; }
+.acc-link:hover { text-decoration: underline; }
 
 button, input, select {
   font-family: inherit;

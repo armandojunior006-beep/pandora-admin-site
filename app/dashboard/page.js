@@ -47,9 +47,9 @@ export default async function DashboardHome() {
       <div className="card">
         <strong>Fluxo rápido:</strong>
         <ol style={{ color: "var(--text-dim)", lineHeight: 1.9 }}>
-          <li>Cadastre um <a href="/dashboard/plans">plano</a> (ex: Mensal, 30 dias).</li>
-          <li>Cadastre o <a href="/dashboard/users">usuário/cliente</a>.</li>
-          <li>Gere uma <a href="/dashboard/licenses">licença/token</a> vinculando usuário + plano.</li>
+          <li>Cadastre um <a className="acc-link" href="/dashboard/plans">plano</a> (ex: Mensal, 30 dias).</li>
+          <li>Cadastre o <a className="acc-link" href="/dashboard/users">usuário/cliente</a>.</li>
+          <li>Gere uma <a className="acc-link" href="/dashboard/licenses">licença/token</a> vinculando usuário + plano.</li>
           <li>Copie o token gerado e envie pro cliente configurar no bot.</li>
         </ol>
       </div>
