@@ -18,7 +18,7 @@ export async function POST(req) {
     const rl = await checkRateLimit(`bot-login:${getClientIp(req)}`, { max: 10, windowMs: 60_000 });
     if (!rl.allowed) return NextResponse.json({ ok: false, error: "Muitas tentativas — aguarde um instante" }, { status: 429 });
     const body = await req.json().catch(() => ({}));
-    const login = String(body.login || "").trim();
+    const login = String(body.login || "").trim().toLowerCase();
     const password = String(body.password || "");
 
     const rows = await sql`SELECT id, name, login, password_hash, status FROM users WHERE login = ${login}`;

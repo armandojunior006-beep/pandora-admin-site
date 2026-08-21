@@ -15,7 +15,10 @@ export async function POST(req) {
     await ensureSchema();
     const body = await req.json().catch(() => ({}));
     const name = String(body.name || "").trim();
-    const login = String(body.login || "").trim();
+    // Bug real 2026-08-21: o login do app normaliza pra minúsculo, mas aqui
+    // gravava como digitado — usuário criado como "Pablo123teste" nunca
+    // conseguia logar. Normaliza igual aos endpoints públicos.
+    const login = String(body.login || "").trim().toLowerCase();
     const contact = String(body.contact || "").trim();
     const notes = String(body.notes || "").trim();
     const password = String(body.password || "");
