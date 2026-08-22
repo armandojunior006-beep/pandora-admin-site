@@ -25,11 +25,13 @@ export function PurchaseModal({ plan, onClose }) {
 
   useEffect(() => () => { if (pollRef.current) clearInterval(pollRef.current); }, []);
 
-  function startPolling(paymentId) {
+  function startPolling(paymentId, pollToken) {
     if (pollRef.current) clearInterval(pollRef.current);
     pollRef.current = setInterval(async () => {
       try {
-        const r = await fetch(`/api/public/payments/${paymentId}/status`);
+        // /status exige o poll_token devolvido na criação (fix IDOR 2026-08-18);
+        // sem ele a rota responde 403 e o token nunca aparecia na tela.
+        const r = await fetch(`/api/public/payments/${paymentId}/status?token=${encodeURIComponent(pollToken)}`);
         const data = await r.json();
         if (!data.ok) return;
         if (data.status === "paid") { setStatus("paid"); setToken(data.token || null); clearInterval(pollRef.current); }
@@ -52,7 +54,7 @@ export function PurchaseModal({ plan, onClose }) {
       if (!data.ok) throw new Error(data.error || "Falha ao gerar cobrança");
       setPayment(data);
       setStatus("pending");
-      startPolling(data.payment_id);
+      startPolling(data.payment_id, data.poll_token);
     } catch (e2) {
       setErr(e2.message || String(e2));
     } finally {
