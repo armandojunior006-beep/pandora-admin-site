@@ -1,8 +1,8 @@
 {
-  "version": "2.0.4+20260822-k2zu",
-  "buildId": "20260822-k2zu",
+  "version": "2.0.5+20260822-oy3v",
+  "buildId": "20260822-oy3v",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "42dafef4f73522d126c81f76ec29c7ba4205c2c9e5cd229f89a30d602eb5780b",
-  "notes": "V2.0.4 — Corrige NOT NULL constraint failed: logs.context_json ao salvar chave PIX"
+  "sha256": "af8f503e480dede8111d0d524931324e0e16826e7f9ed1e8d623420dda52febf",
+  "notes": "V2.0.5 — Corrige de vez o salvar de chave PIX em bancos antigos (migra pix_keys.status)"
 }
