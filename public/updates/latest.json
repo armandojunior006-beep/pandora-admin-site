@@ -1,8 +1,8 @@
 {
-  "version": "2.0.1+20260822-jnp3",
-  "buildId": "20260822-jnp3",
+  "version": "2.0.2+20260822-jd9u",
+  "buildId": "20260822-jd9u",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "9fe4c898774a1606322ed6466eea7795403bfe9b9bd93442f35ccb4d7a6018ed",
-  "notes": "V2.0.1 — Salvar proxy agora mostra o erro na tela quando algo falha"
+  "sha256": "b216b7e386b5f1157cc3ed7b427a52fd3c06a12dfba21327499253823d37b895",
+  "notes": "V2.0.2 — Suporte ao 5gbet.com (cadastro, relatorio, baus) e CPF valido no cadastro de chave PIX"
 }
