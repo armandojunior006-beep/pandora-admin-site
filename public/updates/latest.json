@@ -1,8 +1,8 @@
 {
-  "version": "2.0.3+20260822-amo8",
-  "buildId": "20260822-amo8",
+  "version": "2.0.4+20260822-k2zu",
+  "buildId": "20260822-k2zu",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "c009fcb3385fc4065d9f2c98d15e0e99488d2e5ce70e3a34c421f58965f56c60",
-  "notes": "V2.0.3 — Corrige erro ao salvar chave PIX (table logs has no column named user_id) em bancos antigos"
+  "sha256": "42dafef4f73522d126c81f76ec29c7ba4205c2c9e5cd229f89a30d602eb5780b",
+  "notes": "V2.0.4 — Corrige NOT NULL constraint failed: logs.context_json ao salvar chave PIX"
 }
