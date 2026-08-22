@@ -1,8 +1,8 @@
 {
-  "version": "2.0.9+20260822-jpwx",
-  "buildId": "20260822-jpwx",
+  "version": "2.0.9+20260822-8q6r",
+  "buildId": "20260822-8q6r",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "722840ae0ef74c371a4db60b0091a08ee678a2428f046579ee591c789d20ac84",
-  "notes": "Novo botão Atualizar na tela de login — atualize sem precisar de token"
+  "sha256": "06087fc30edab71f21b322e8c51fdf3ea981705dd9fc198ad23bdd40d16c1efa",
+  "notes": "Planos atualizados (Diária R$30, Mensal R$147, Vitalício R$397); visual preto/vermelho nos modais de conta, planos e token; pagamento via Sync Pay"
 }
