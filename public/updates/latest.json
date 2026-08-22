@@ -1,8 +1,8 @@
 {
-  "version": "2.0.7+20260822-3bc8",
-  "buildId": "20260822-3bc8",
+  "version": "2.0.9+20260822-auzx",
+  "buildId": "20260822-auzx",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "baaf77863b27b734fa077dc8b59dd9d6eecaee1c73a3265c8ac89b0a4953a535",
-  "notes": "V2.0.7 — Cadastro de chave PIX por tipo: agora tambem cadastra chave Aleatoria (EVP)"
+  "sha256": "7d04cee3a9ecbff790d6563655501b7d74f4d1c12aa8362b15abe57b46ff45da",
+  "notes": "Modal de criar conta no visual preto/vermelho; tela de login preenche a janela inteira (sem faixa preta); pagamentos Pix agora via SyncPay; plano diário renomeado"
 }
