@@ -1,8 +1,8 @@
 {
-  "version": "2.0.5+20260822-oy3v",
-  "buildId": "20260822-oy3v",
+  "version": "2.0.6+20260822-3nrd",
+  "buildId": "20260822-3nrd",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "af8f503e480dede8111d0d524931324e0e16826e7f9ed1e8d623420dda52febf",
-  "notes": "V2.0.5 — Corrige de vez o salvar de chave PIX em bancos antigos (migra pix_keys.status)"
+  "sha256": "6e534e0f9619c12c66d480379e1b1a14f599728c73d7e84f7c68b83d0878b2b1",
+  "notes": "V2.0.6 — Migracoes de schema resilientes (garante pix_keys.status/logs.user_id mesmo em bancos antigos)"
 }
