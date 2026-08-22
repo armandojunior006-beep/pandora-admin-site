@@ -1,6 +1,6 @@
 // ============================================================================
 // POST /api/public/payments/create — compra automática de plano via Pix
-// (MisticPay). Body: { plan_key, login?, password?, new_login?, new_password? }
+// (SyncPay). Body: { plan_key, login?, password?, new_login?, new_password? }
 // - Se vier login/password: vincula o pagamento a um usuário já existente.
 // - Se vier new_login/new_password: cria a conta somente quando o Pix for
 //   confirmado (webhook), evitando lixo de contas não pagas no banco.
@@ -9,7 +9,7 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { sql, ensureSchema } from "../../../../../lib/db.js";
 import { hashPassword, comparePassword } from "../../../../../lib/auth.js";
-import { createPixCharge } from "../../../../../lib/misticpay.js";
+import { createPixCharge } from "../../../../../lib/syncpay.js";
 import { withCors, CORS_HEADERS } from "../../../../../lib/cors.js";
 
 export async function OPTIONS() {
@@ -61,8 +61,8 @@ export async function POST(req) {
     }
 
     // Cria a linha do pagamento primeiro pra ter um id nosso estável, depois
-    // gera a cobrança na MisticPay usando esse id como transactionId (facilita
-    // casar o webhook sem depender só do id retornado por eles).
+    // gera a cobrança na SyncPay. O identifier gerado por ELES vira o nosso
+    // provider_tx_id (é ele que volta no webhook como "id").
     // Segurança 2026-08-18 (IDOR corrigido): gera junto um token opaco de
     // consulta — devolvido só nesta resposta, exigido depois pra consultar
     // /status (ver route.js de status). Sem isso, o id sequencial sozinho
@@ -70,7 +70,7 @@ export async function POST(req) {
     const pollToken = crypto.randomUUID();
     const inserted = await sql`
       INSERT INTO payments (provider, provider_tx_id, plan_id, user_id, new_login, new_password_hash, amount_cents, status, poll_token)
-      VALUES ('misticpay', ${'pending_' + crypto.randomUUID()}, ${plan.id}, ${userId}, ${newLogin}, ${newPasswordHash}, ${plan.price_cents}, 'pendente', ${pollToken})
+      VALUES ('syncpay', ${'pending_' + crypto.randomUUID()}, ${plan.id}, ${userId}, ${newLogin}, ${newPasswordHash}, ${plan.price_cents}, 'pendente', ${pollToken})
       RETURNING id
     `;
     const paymentId = inserted[0].id;

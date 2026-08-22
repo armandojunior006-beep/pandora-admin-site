@@ -1,30 +1,29 @@
 // ============================================================================
-// POST /api/public/payments/webhook — recebido pela MisticPay quando o
-// status de uma cobrança Pix muda (depósito). Configurar esta URL EXATA no
-// painel da MisticPay (não a URL do dashboard, que é só a tela do painel):
-//   https://pandora-admin-site.vercel.app/api/public/payments/webhook?key=<MISTICPAY_WEBHOOK_SECRET>
+// POST /api/public/payments/webhook — recebido pela SyncPay quando o
+// status de uma cobrança Pix (cash-in) muda. Configurar esta URL EXATA no
+// painel da SyncPay (webhook "Recebimento - Cash in"):
+//   https://pandora-admin-site.vercel.app/api/public/payments/webhook?key=<SYNCPAY_WEBHOOK_SECRET>
 //
-// Payload (deposit webhook):
-// { transactionId, transactionType, transactionMethod, clientName,
-//   clientDocument, status, value, fee, e2e }
-// status: "COMPLETO" | "PENDENTE" | "FALHA"
+// Payload (cash-in webhook): { id, end_to_end, client{...}, pix_code,
+//   amount, final_amount, currency, status, payment_method, ... }
+// "id" = identifier da transação (nosso provider_tx_id);
+// status: "pending" | "completed" | "failed" | "refunded" | "med"
 //
-// SEGURANÇA — a MisticPay NÃO assina os webhooks (sem HMAC/secret nativo,
-// confirmado na documentação deles). Sem proteção, qualquer pessoa que
-// descobrisse esta URL poderia forjar um POST { status: "COMPLETO" } e
-// ganhar um token sem pagar. Duas camadas contra isso:
-//   1) ?key= precisa bater com MISTICPAY_WEBHOOK_SECRET (só nós conhecemos,
-//      configurado direto no painel da MisticPay).
+// SEGURANÇA — a SyncPay não assina os webhooks com HMAC. Sem proteção,
+// qualquer pessoa que descobrisse esta URL poderia forjar um POST
+// { status: "completed" } e ganhar um token sem pagar. Duas camadas:
+//   1) ?key= precisa bater com SYNCPAY_WEBHOOK_SECRET (só nós conhecemos,
+//      configurado direto na URL cadastrada no painel da SyncPay).
 //   2) Mesmo com a chave certa, NUNCA confiamos no "status" do corpo do
-//      POST — sempre re-confirmamos o pagamento direto na API da MisticPay
-//      (checkPixCharge, autenticado com ci/cs que só o servidor tem) antes
-//      de liberar o token. Isso torna impossível forjar um pagamento mesmo
-//      que a URL secreta vaze.
+//      POST — sempre re-confirmamos o pagamento direto na API da SyncPay
+//      (checkPixCharge, autenticado com client_id/secret que só o servidor
+//      tem) antes de liberar o token. Isso torna impossível forjar um
+//      pagamento mesmo que a URL secreta vaze.
 // ============================================================================
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { sql, ensureSchema } from "../../../../../lib/db.js";
-import { checkPixCharge } from "../../../../../lib/misticpay.js";
+import { checkPixCharge } from "../../../../../lib/syncpay.js";
 
 function genToken() {
   return "pdr_" + crypto.randomBytes(24).toString("hex");
@@ -39,7 +38,7 @@ function timingSafeEqual(a, b) {
 
 export async function POST(req) {
   try {
-    const expectedKey = process.env.MISTICPAY_WEBHOOK_SECRET;
+    const expectedKey = process.env.SYNCPAY_WEBHOOK_SECRET;
     if (!expectedKey) return NextResponse.json({ ok: false, error: "Webhook não configurado (secret ausente)" }, { status: 500 });
     const gotKey = new URL(req.url).searchParams.get("key");
     if (!gotKey || !timingSafeEqual(gotKey, expectedKey)) {
@@ -48,8 +47,10 @@ export async function POST(req) {
 
     await ensureSchema();
     const body = await req.json().catch(() => ({}));
-    const providerTxId = String(body.transactionId || "").trim();
-    if (!providerTxId) return NextResponse.json({ ok: false, error: "transactionId ausente" }, { status: 400 });
+    // SyncPay manda o identifier no campo "id"; aceita transactionId como
+    // fallback pra webhooks antigos da MisticPay ainda em trânsito.
+    const providerTxId = String(body.id || body.transactionId || "").trim();
+    if (!providerTxId) return NextResponse.json({ ok: false, error: "id ausente" }, { status: 400 });
 
     const rows = await sql`SELECT * FROM payments WHERE provider_tx_id = ${providerTxId}`;
     if (!rows.length) {
