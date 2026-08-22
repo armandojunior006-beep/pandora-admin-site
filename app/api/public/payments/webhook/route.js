@@ -38,10 +38,17 @@ function timingSafeEqual(a, b) {
 
 export async function POST(req) {
   try {
+    // Duas credenciais válidas: ?key= (nosso secret na URL) OU o Bearer que a
+    // SyncPay envia no header Authorization (token gerado ao criar o webhook
+    // no painel deles, em SYNCPAY_WEBHOOK_TOKEN). Qualquer uma autoriza.
     const expectedKey = process.env.SYNCPAY_WEBHOOK_SECRET;
-    if (!expectedKey) return NextResponse.json({ ok: false, error: "Webhook não configurado (secret ausente)" }, { status: 500 });
+    const expectedBearer = process.env.SYNCPAY_WEBHOOK_TOKEN;
+    if (!expectedKey && !expectedBearer) return NextResponse.json({ ok: false, error: "Webhook não configurado (secret ausente)" }, { status: 500 });
     const gotKey = new URL(req.url).searchParams.get("key");
-    if (!gotKey || !timingSafeEqual(gotKey, expectedKey)) {
+    const gotBearer = (req.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
+    const keyOk = expectedKey && gotKey && timingSafeEqual(gotKey, expectedKey);
+    const bearerOk = expectedBearer && gotBearer && timingSafeEqual(gotBearer, expectedBearer);
+    if (!keyOk && !bearerOk) {
       return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
     }
 
