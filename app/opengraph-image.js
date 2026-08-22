@@ -26,7 +26,7 @@ export default async function OgImage() {
           padding: "80px",
           background: "#030404",
           backgroundImage:
-            "radial-gradient(circle at 15% 20%, rgba(0,214,143,0.18), transparent 45%), radial-gradient(circle at 85% 80%, rgba(0,214,143,0.10), transparent 45%)",
+            "radial-gradient(circle at 15% 20%, rgba(220,38,38,0.18), transparent 45%), radial-gradient(circle at 85% 80%, rgba(220,38,38,0.10), transparent 45%)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 40 }}>
@@ -36,7 +36,7 @@ export default async function OgImage() {
               height: 20,
               borderRadius: 6,
               background: "#00d68f",
-              boxShadow: "0 0 40px 8px rgba(0,214,143,0.55)",
+              boxShadow: "0 0 40px 8px rgba(220,38,38,0.55)",
             }}
           />
           <div style={{ fontSize: 26, color: "#ffffff99", fontFamily: "monospace", letterSpacing: 1 }}>

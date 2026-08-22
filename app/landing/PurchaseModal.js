@@ -76,7 +76,7 @@ export function PurchaseModal({ plan, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-white/10 bg-panel-2 p-7 shadow-[0_40px_120px_-30px_rgba(0,214,143,0.5)]"
+        className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-white/10 bg-panel-2 p-7 shadow-[0_40px_120px_-30px_rgba(220,38,38,0.5)]"
       >
         <button onClick={onClose} className="absolute right-4 top-4 text-white/40 transition hover:text-white" aria-label="Fechar">
           <X size={18} />

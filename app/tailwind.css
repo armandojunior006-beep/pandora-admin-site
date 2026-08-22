@@ -24,7 +24,7 @@
      verde igual ao do app, pois o do site não é verde") — valores tirados
      literalmente de novo-pandora-bot/tailwind.config.js: accent2 (=success,
      cor do botão Play/confirmações) e accentSoft (fundo suave dos badges). */
-  --color-emerald-glow: #39c766;
-  --color-emerald: #2ea24c;
-  --color-emerald-dim: #0d3d1c;
+  --color-emerald-glow: #ef4444; /* rebrand 2026-08-22: preto+vermelho, era #39c766 */
+  --color-emerald: #dc2626; /* era #2ea24c */
+  --color-emerald-dim: #3d0d12; /* era #0d3d1c */
 }
