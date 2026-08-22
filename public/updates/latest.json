@@ -1,8 +1,8 @@
 {
-  "version": "2.0.9+20260822-auzx",
-  "buildId": "20260822-auzx",
+  "version": "2.0.9+20260822-jpwx",
+  "buildId": "20260822-jpwx",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "7d04cee3a9ecbff790d6563655501b7d74f4d1c12aa8362b15abe57b46ff45da",
-  "notes": "Modal de criar conta no visual preto/vermelho; tela de login preenche a janela inteira (sem faixa preta); pagamentos Pix agora via SyncPay; plano diário renomeado"
+  "sha256": "722840ae0ef74c371a4db60b0091a08ee678a2428f046579ee591c789d20ac84",
+  "notes": "Novo botão Atualizar na tela de login — atualize sem precisar de token"
 }
