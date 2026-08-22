@@ -1,8 +1,8 @@
 {
-  "version": "2.0.6+20260822-3nrd",
-  "buildId": "20260822-3nrd",
+  "version": "2.0.7+20260822-3bc8",
+  "buildId": "20260822-3bc8",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "6e534e0f9619c12c66d480379e1b1a14f599728c73d7e84f7c68b83d0878b2b1",
-  "notes": "V2.0.6 — Migracoes de schema resilientes (garante pix_keys.status/logs.user_id mesmo em bancos antigos)"
+  "sha256": "baaf77863b27b734fa077dc8b59dd9d6eecaee1c73a3265c8ac89b0a4953a535",
+  "notes": "V2.0.7 — Cadastro de chave PIX por tipo: agora tambem cadastra chave Aleatoria (EVP)"
 }
