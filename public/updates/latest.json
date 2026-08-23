@@ -1,8 +1,8 @@
 {
-  "version": "2.0.9+20260822-8q6r",
-  "buildId": "20260822-8q6r",
+  "version": "2.0.10+20260823-oggj",
+  "buildId": "20260823-oggj",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "06087fc30edab71f21b322e8c51fdf3ea981705dd9fc198ad23bdd40d16c1efa",
-  "notes": "Planos atualizados (Diária R$30, Mensal R$147, Vitalício R$397); visual preto/vermelho nos modais de conta, planos e token; pagamento via Sync Pay"
+  "sha256": "62bb57efcc70b41139ec6789fada83b46e055c94c1c69e0aa303f68bc382c26d",
+  "notes": "CPF em todos os links; proxy por conta na aba Contas; Speed Hack com slider+caixinha; senha de saque deterministica (sempre a mesma); Perfil nao pula mais pra Seguranca; log mostra senha de saque; tooltip QR; icones brancos"
 }
