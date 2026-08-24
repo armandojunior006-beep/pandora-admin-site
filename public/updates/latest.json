@@ -1,8 +1,8 @@
 {
-  "version": "2.0.10+20260823-oggj",
-  "buildId": "20260823-oggj",
+  "version": "2.0.11+20260824-9phd",
+  "buildId": "20260824-9phd",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "62bb57efcc70b41139ec6789fada83b46e055c94c1c69e0aa303f68bc382c26d",
-  "notes": "CPF em todos os links; proxy por conta na aba Contas; Speed Hack com slider+caixinha; senha de saque deterministica (sempre a mesma); Perfil nao pula mais pra Seguranca; log mostra senha de saque; tooltip QR; icones brancos"
+  "sha256": "1d6561dc95b3d6240f33b7387a7e073e0fcbfdff889b6789a8bd91a7d3e03eaf",
+  "notes": "Interface compacta em todas as abas (janela 1050x480, mesmas funcoes); Contas cabe 10 por pagina; speedhack nao desativa mais sozinho na PG; Janelas para Controlar seleciona a tela certa; fechar tela nao renumera as outras; Relatorio de Apostas funciona em trovapg.co e 888win.com; log do sistema com dispositivo"
 }
