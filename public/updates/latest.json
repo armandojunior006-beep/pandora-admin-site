@@ -1,8 +1,8 @@
 {
-  "version": "2.0.11+20260824-9phd",
-  "buildId": "20260824-9phd",
+  "version": "2.0.12+20260824-i3mg",
+  "buildId": "20260824-i3mg",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "1d6561dc95b3d6240f33b7387a7e073e0fcbfdff889b6789a8bd91a7d3e03eaf",
-  "notes": "Interface compacta em todas as abas (janela 1050x480, mesmas funcoes); Contas cabe 10 por pagina; speedhack nao desativa mais sozinho na PG; Janelas para Controlar seleciona a tela certa; fechar tela nao renumera as outras; Relatorio de Apostas funciona em trovapg.co e 888win.com; log do sistema com dispositivo"
+  "sha256": "fe5c7b0b59d80f32bed38c55fe60073e128fd9cbd91cde681bd8e46ab5def8a7",
+  "notes": "Pagina de Baus direto em trovapg.co; interface compacta em todas as abas; speedhack nao desativa na PG; janelas para controlar/numeracao corretas; relatorio de apostas em trovapg.co e 888win.com"
 }
