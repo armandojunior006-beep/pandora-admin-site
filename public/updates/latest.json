@@ -1,8 +1,8 @@
 {
-  "version": "2.0.36+20260828-q689",
-  "buildId": "20260828-q689",
+  "version": "2.0.37+20260828-kpm4",
+  "buildId": "20260828-kpm4",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "bc9248e00db9759d3b74987a64f90e739ad9f4ae4e8b1af538bcf71196ad4e13",
-  "notes": "Re-login: envios escalonados (evita o bloqueio do Cloudflare quando varias telas logam juntas) e deteccao de falha pela propria request, com retry automatico."
+  "sha256": "d47b3846a340774b9789286795adf3a340ad4562bad0d18568b2441519c6d761",
+  "notes": "Modo Aplicativo agora emula o app de verdade (bridge nativa do APK), liberando as funcoes que so aparecem no aplicativo. Antes o botao so fingia PWA e nao valia no Chrome real."
 }
