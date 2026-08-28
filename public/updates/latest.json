@@ -1,8 +1,8 @@
 {
-  "version": "2.0.35+20260828-9bue",
-  "buildId": "20260828-9bue",
+  "version": "2.0.36+20260828-q689",
+  "buildId": "20260828-q689",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "8486af88c03b8e65814251eab415cd8ec4556f078c2dfc2508f004c6d1413d0f",
-  "notes": "Re-login: nao preenche mais o cadastro no precisar777.vip (aba Login). Erro de rede: retry com jitter + diagnostico da causa real. Telas: botao Detectar removido, grade em uma linha so."
+  "sha256": "bc9248e00db9759d3b74987a64f90e739ad9f4ae4e8b1af538bcf71196ad4e13",
+  "notes": "Re-login: envios escalonados (evita o bloqueio do Cloudflare quando varias telas logam juntas) e deteccao de falha pela propria request, com retry automatico."
 }
