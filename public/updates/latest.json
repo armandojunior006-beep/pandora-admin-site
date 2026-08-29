@@ -1,8 +1,8 @@
 {
-  "version": "2.0.37+20260828-kpm4",
-  "buildId": "20260828-kpm4",
+  "version": "2.0.38+20260829-qzxs",
+  "buildId": "20260829-qzxs",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "d47b3846a340774b9789286795adf3a340ad4562bad0d18568b2441519c6d761",
-  "notes": "Modo Aplicativo agora emula o app de verdade (bridge nativa do APK), liberando as funcoes que so aparecem no aplicativo. Antes o botao so fingia PWA e nao valia no Chrome real."
+  "sha256": "34b51e923b7b15c885aaff065824d7851f604baa2404d5d23b8abb57de555ea4",
+  "notes": "Modo Aplicativo agora entra sempre como celular Android (antes, com o Modo Mobile desligado, a casa via um PC)."
 }
