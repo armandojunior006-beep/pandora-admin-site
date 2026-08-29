@@ -1,8 +1,8 @@
 {
-  "version": "2.0.39+20260829-y3i6",
-  "buildId": "20260829-y3i6",
+  "version": "2.0.41+20260829-5ino",
+  "buildId": "20260829-5ino",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "80b1aa02aa3effc4abc8069745b7b82a37221434c0e2d3f257e83ea84b811afa",
-  "notes": "Migracao para o site novo: login por e-mail (quem comprou no site) ou login (quem comprou no bot), token do site, e compra dentro do bot com CPF e telefone."
+  "sha256": "9f78f4bcdd4b07c8074b740a907ab41a2e346188d579a71a7c7691c0401d8ebf",
+  "notes": "Corrige a tela que ficava presa no carregando ao dar Play. Menos travamento e menos consumo (o bot parou de insistir em alvos ja fechados)."
 }
