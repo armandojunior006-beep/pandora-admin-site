@@ -1,8 +1,8 @@
 {
-  "version": "2.0.42+20260830-ry8h",
-  "buildId": "20260830-ry8h",
+  "version": "2.0.50+20260902-pgci",
+  "buildId": "20260902-pgci",
   "type": "main",
   "url": "https://pandora-admin-site.vercel.app/updates/main-update.zip",
-  "sha256": "cc75628d578a3438e9a989935b8a062c662df2104b856bc5013bcf41b02b7949",
-  "notes": "Corrige a compra pelo bot: o QR agora fecha sozinho quando o pagamento cai e o token aparece na tela."
+  "sha256": "2cfa6f9de5fd629d195a4bf92a0b5d7ed74f53fd811d274814cb5305325546ed",
+  "notes": "Lucky Dog abre o 1o card em brlbet.com/.win e 5gbet.com"
 }
